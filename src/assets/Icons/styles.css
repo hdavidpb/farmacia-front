@@ -1,0 +1,36 @@
+.plus__white__icon {
+  height: 20px;
+  cursor: pointer;
+}
+.trash__icon {
+  height: 25px;
+  cursor: pointer;
+}
+
+.upload__icon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  z-index: 10;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.466);
+  border-radius: 10px;
+}
+
+.download__icon {
+  width: 47px;
+  height: 47px;
+}
+
+.magnifying__icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 5%;
+  top: 25%;
+}
+
+.users__notification {
+  width: 100%;
+  height: 300px;
+}
