@@ -9,7 +9,7 @@ import * as sc from "./styles";
 
 const Table = () => {
   const dispatch = useDispatch();
-  const { loading, shelf } = useSelector(
+  const { loading, filterShelf } = useSelector(
     (store: RootState) => store.physicalInventorie
   );
 
@@ -25,7 +25,7 @@ const Table = () => {
       </sc.TitleContainer>
       <sc.ProductTableListContainer>
         {!loading ? (
-          shelf.map((shelf) => (
+          filterShelf.map((shelf) => (
             <sc.TableListContainer key={shelf.shelfId}>
               <sc.ListDesc>{shelf.shelfName}</sc.ListDesc>
               <sc.ListDesc>{`${shelf.quantity} productos`}</sc.ListDesc>

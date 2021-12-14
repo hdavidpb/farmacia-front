@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface IProps {
-  cursor?: true;
+  cursorPointer?: true;
 }
 
 export const Container = styled.div`
@@ -165,7 +165,7 @@ export const ListDesc = styled.p`
   color: #617187;
   font-size: 14px;
   padding: 10px;
-  cursor: ${({ cursor }: IProps) => (cursor ? "pointer" : "")};
+  cursor: ${({ cursorPointer }: IProps) => (cursorPointer ? "pointer" : "")};
 `;
 
 export const DownloadBtn = styled.button`
@@ -186,7 +186,7 @@ export const DownloadBtn = styled.button`
   }
 `;
 
-export const ModalFormContainer = styled.div`
+export const ModalFormContainer = styled.form`
   width: 100%;
   height: 100%;
   display: flex;
@@ -266,6 +266,15 @@ export const TableProductsContainer = styled.div`
   align-items: center;
   padding: 6px;
   background: #ffffff;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #cdcffe;
+    border-radius: 6px;
+  }
 `;
 
 export const TablListContainer = styled.div`
@@ -277,6 +286,22 @@ export const TablListContainer = styled.div`
   gap: 10px;
   border-bottom: solid 1px #8080806e;
   background: #ffffff;
+`;
+
+export const CloseBtn = styled.button`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15px;
+  height: 15px;
+  border: none;
+  border-radius: 50%;
+  background: #4e5c6e;
+  color: #ffffff;
+  top: 2px;
+  right: 7px;
+  font-size: 14px;
 `;
 
 export const formModalCustomStyles = {

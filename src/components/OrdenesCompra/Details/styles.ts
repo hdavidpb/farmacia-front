@@ -228,3 +228,24 @@ export const BtnBack = styled(Link)`
     margin-bottom: 0;
   }
 `;
+
+/** SIGNING APPROVE */
+
+export const SigningContainer = styled.div`
+  position: relative;
+
+  width: 100%;
+  height: 96vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  grid-column: 2/6;
+  padding-right: 4rem;
+  padding-top: 3rem;
+  gap: 1rem;
+
+  @media (max-width: 1375px) {
+    padding-right: 1rem;
+  }
+`;

@@ -7,6 +7,7 @@ import ModalForm from "./ModalForm";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@redux/store";
 import { setShowModal } from "@redux/features/physical-inventory/physicalInventorieSlice";
+import { ToastContainer } from "react-toastify";
 const InventarioFisico = () => {
   const dispatch = useDispatch();
   const { showModal } = useSelector(
@@ -26,6 +27,7 @@ const InventarioFisico = () => {
       </Modal>
       <Filter />
       <Table />
+      <ToastContainer theme="colored" autoClose={2000} />
     </sc.Container>
   );
 };

@@ -6,6 +6,7 @@ import InventarioFisico from "@components/Inventario-fisico/InventarioFisico";
 import Inventario from "@components/Inventario/Inventario";
 import Movimientos from "@components/Movimientos/Movimientos";
 import DetailsOrders from "@components/OrdenesCompra/Details/DetailsOrders";
+import Signing from "@components/OrdenesCompra/Details/Signing";
 import { ListaCompras } from "@components/OrdenesCompra/ListaCompras/ListaCompras";
 import OrdenesTable from "@components/OrdenesCompra/Ordenes/OrdenesTable";
 import OrdenesCompra from "@components/OrdenesCompra/OrdenesCompra";
@@ -30,6 +31,7 @@ export const ordersDetailsPath =
   "/farmacia/ordenes-compra/ordenes-table/detalles/:id";
 export const fichaTecnicaPath = "/farmacia/productos/ficha-tecnica/:id";
 export const providerDetailspath = "/farmacia/proveedores/details/:id";
+export const ApproveOrderSignPath = "/farmacia/orders/sign/:id";
 export const trasladosPath = "/farmacia/traslados";
 export const gestorViewPath = "/farmacia/traslados/gestor-view";
 export const physicalInventoryPath = "/farmacia/inventario-fisico";
@@ -51,4 +53,5 @@ export const publicRoutes = [
   { component: FichaTecnica, path: fichaTecnicaPath, exact: true },
   { component: ViewGestor, path: gestorViewPath, exact: true },
   { component: InventarioFisico, path: physicalInventoryPath, exact: true },
+  { component: Signing, path: ApproveOrderSignPath, exact: true },
 ];

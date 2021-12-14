@@ -36,11 +36,12 @@ const useSuggestionsHistory = () => {
       toast.error("Debes agregar una fecha final");
       return;
     }
-    let URL =
-      "https://api-test.clinicabonnadona.com/api/v1/farmacia/orders/suggestions/excel";
+    let URL = `${process.env.REACT_APP_API_LOCAL_HOST}/orders/suggestions/excel`;
 
     if (initialDate !== "" && finalDate !== "") {
-      URL = `https://api-test.clinicabonnadona.com/api/v1/farmacia/orders/suggestions/excel?initialDate=${dayjs(
+      URL = `${
+        process.env.REACT_APP_API_LOCAL_HOST
+      }/orders/suggestions/excel?initialDate=${dayjs(
         initialDate,
         "YYYY-MM-DD"
       ).toISOString()}&finalDate=${dayjs(
