@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 interface IProps {
   background?: string;
+  grid?: string;
+  border?: boolean;
 }
 
 export const DetailsContainer = styled.div`
@@ -247,5 +249,143 @@ export const SigningContainer = styled.div`
 
   @media (max-width: 1375px) {
     padding-right: 1rem;
+  }
+`;
+
+export const BonnasonaTemplateContinaer = styled.div`
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #313131;
+`;
+
+export const ContentContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(${({ grid }: IProps) => grid}, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 13px;
+  border-bottom: ${({ border }: IProps) => (border ? "solid 1px gray" : "")};
+`;
+
+export const FooterGridConteiner = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center;
+`;
+export const TilteFirstContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(${({ grid }: IProps) => grid}, 1fr);
+  justify-content: center;
+  align-items: center;
+  grid-column: 1/2;
+  border: solid 1px gray;
+`;
+export const TitleSeconContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(${({ grid }: IProps) => grid}, 1fr);
+  justify-content: center;
+  align-items: center;
+  grid-column: 2/4;
+  border: solid 1px gray;
+`;
+
+export const TitleLayoutDesc = styled.p`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  margin-bottom: 0;
+  border-right: ${({ border }: IProps) => (border ? "solid 1px gray " : "")};
+  padding: 3px;
+  &:last-child {
+    border: none;
+  }
+`;
+
+export const HeaderContainer = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 13px;
+  border-bottom: solid 1px gray;
+`;
+
+export const ImgHeader = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
+  & img {
+    width: 200px;
+    height: 70px;
+  }
+`;
+
+export const ContentHeader = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  gap: 5px;
+
+  & h1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    color: #3f4a59;
+    font-weight: 600;
+    margin-bottom: 0;
+    text-align: center;
+  }
+`;
+
+export const FieldContentHeader = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const FieldSingleContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+  padding-left: 1rem;
+  & span {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  & p {
+    display: inline-block;
+    font-size: 12px;
+    margin-bottom: 0;
   }
 `;

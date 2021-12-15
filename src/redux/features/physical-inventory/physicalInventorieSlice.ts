@@ -75,6 +75,7 @@ export const physicalInventorieSlice = createSlice({
     builder.addCase(CreateShelf.fulfilled, (state, { payload }) => {
       state.loading = false;
       state.shelf = [...state.shelf, payload!];
+      state.filterShelf = [...state.filterShelf, payload!];
       toast.success("Estante agregado con exito!");
     });
   },

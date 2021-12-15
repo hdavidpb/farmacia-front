@@ -38,8 +38,10 @@ const Alertas = () => {
     <sc.CarrosParoContainer>
       <CarrosButtonsLink view={1} />
       <sc.HeaderMessage>
-        Aquí se muestran los carros que han sido abiertos y los medicamentos
-        faltantes en cada uno de ellos
+        <h4>
+          Aquí se muestran los carros que han sido abiertos y los medicamentos
+          faltantes en cada uno de ellos
+        </h4>
       </sc.HeaderMessage>
       <sc.TableTitlesContainer columns={"3"}>
         <sc.TitleDescItem>Carro</sc.TitleDescItem>

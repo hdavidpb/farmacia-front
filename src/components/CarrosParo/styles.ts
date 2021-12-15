@@ -230,6 +230,7 @@ export const HeaderMessage = styled.div`
     font-size: 16px;
     text-align: center;
     margin-bottom: 0;
+    font-weight: bold;
   }
 `;
 
