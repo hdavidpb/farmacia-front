@@ -1,12 +1,14 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as sc from "../styles";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { RiArrowLeftSLine } from "react-icons/ri";
 import { FaTrashAlt } from "react-icons/fa";
 import ButtonsLinks from "../ButtonsLinks";
 import { RootState } from "@redux/store";
+import { deleteProductFromList } from "@redux/features/orders/ordersSlice";
 export const ListaCompras = () => {
+  const dispatch = useDispatch();
   const { shoppingList } = useSelector(
     (store: RootState) => store.orders.shoppingData
   );
@@ -29,7 +31,7 @@ export const ListaCompras = () => {
       <sc.ComprasContainer>
         {shoppingList.length !== 0 ? (
           shoppingList.map((el) => (
-            <sc.ComprasListItems>
+            <sc.ComprasListItems key={el.id}>
               <sc.DescsItem>
                 <sc.DescContainer>
                   <h6>Medicamento:</h6>
@@ -73,7 +75,7 @@ export const ListaCompras = () => {
                 </sc.CantidadItem>
               </sc.PiceItemContainer>
               <sc.PriceItemOne>
-                <button>
+                <button onClick={() => dispatch(deleteProductFromList(el.id))}>
                   <FaTrashAlt />
                 </button>
               </sc.PriceItemOne>
@@ -82,187 +84,6 @@ export const ListaCompras = () => {
         ) : (
           <div> Aún no tiene productos en la lista </div>
         )}
-
-        {/* <sc.ComprasListItems>
-          <sc.DescsItem>
-            <sc.DescContainer>
-              <h6>Medicamento:</h6>
-              <p>Lorem ipsum dolor sit.</p>
-            </sc.DescContainer>
-            <sc.DescContainer>
-              <h6>Categoría:</h6>
-              <p>Lorem ipsum dolor sit.</p>
-            </sc.DescContainer>
-            <sc.DescContainer>
-              <h6>Existencias:</h6>
-              <p>100</p>
-            </sc.DescContainer>
-            <sc.DescContainer>
-              <h6>Consumo Estimado:</h6>
-              <p>234</p>
-            </sc.DescContainer>
-          </sc.DescsItem>
-          <sc.ProveedorItem>
-            <sc.ProveedorDescItem>
-              <h6>Proveedor:</h6>
-              <p>Lorem, ipsum.</p>
-            </sc.ProveedorDescItem>
-          </sc.ProveedorItem>
-          <sc.PiceItemContainer>
-            <sc.PriceItemOne>
-              <h6>Precio:</h6>
-              <p>$1.500</p>
-            </sc.PriceItemOne>
-            <sc.PriceItemOne>
-              <h6>Total:</h6>
-              <p>$15.000.000</p>
-            </sc.PriceItemOne>
-            <sc.CantidadItem>
-              <h6>Cantidad:</h6>
-              <p>432</p>
-            </sc.CantidadItem>
-          </sc.PiceItemContainer>
-          <sc.PriceItemOne>
-            <button>
-              <FaTrashAlt />
-            </button>
-          </sc.PriceItemOne>
-        </sc.ComprasListItems>
-        <sc.ComprasListItems>
-          <sc.DescsItem>
-            <sc.DescContainer>
-              <h6>Medicamento:</h6>
-              <p>Lorem ipsum dolor sit.</p>
-            </sc.DescContainer>
-            <sc.DescContainer>
-              <h6>Categoría:</h6>
-              <p>Lorem ipsum dolor sit.</p>
-            </sc.DescContainer>
-            <sc.DescContainer>
-              <h6>Existencias:</h6>
-              <p>100</p>
-            </sc.DescContainer>
-            <sc.DescContainer>
-              <h6>Consumo Estimado:</h6>
-              <p>234</p>
-            </sc.DescContainer>
-          </sc.DescsItem>
-          <sc.ProveedorItem>
-            <sc.ProveedorDescItem>
-              <h6>Proveedor:</h6>
-              <p>Lorem, ipsum.</p>
-            </sc.ProveedorDescItem>
-          </sc.ProveedorItem>
-          <sc.PiceItemContainer>
-            <sc.PriceItemOne>
-              <h6>Precio:</h6>
-              <p>$1.500</p>
-            </sc.PriceItemOne>
-            <sc.PriceItemOne>
-              <h6>Total:</h6>
-              <p>$15.000.000</p>
-            </sc.PriceItemOne>
-            <sc.CantidadItem>
-              <h6>Cantidad:</h6>
-              <p>432</p>
-            </sc.CantidadItem>
-          </sc.PiceItemContainer>
-          <sc.PriceItemOne>
-            <button>
-              <FaTrashAlt />
-            </button>
-          </sc.PriceItemOne>
-        </sc.ComprasListItems>
-        <sc.ComprasListItems>
-          <sc.DescsItem>
-            <sc.DescContainer>
-              <h6>Medicamento:</h6>
-              <p>Lorem ipsum dolor sit.</p>
-            </sc.DescContainer>
-            <sc.DescContainer>
-              <h6>Categoría:</h6>
-              <p>Lorem ipsum dolor sit.</p>
-            </sc.DescContainer>
-            <sc.DescContainer>
-              <h6>Existencias:</h6>
-              <p>100</p>
-            </sc.DescContainer>
-            <sc.DescContainer>
-              <h6>Consumo Estimado:</h6>
-              <p>234</p>
-            </sc.DescContainer>
-          </sc.DescsItem>
-          <sc.ProveedorItem>
-            <sc.ProveedorDescItem>
-              <h6>Proveedor:</h6>
-              <p>Lorem, ipsum.</p>
-            </sc.ProveedorDescItem>
-          </sc.ProveedorItem>
-          <sc.PiceItemContainer>
-            <sc.PriceItemOne>
-              <h6>Precio:</h6>
-              <p>$1.500</p>
-            </sc.PriceItemOne>
-            <sc.PriceItemOne>
-              <h6>Total:</h6>
-              <p>$15.000.000</p>
-            </sc.PriceItemOne>
-            <sc.CantidadItem>
-              <h6>Cantidad:</h6>
-              <p>432</p>
-            </sc.CantidadItem>
-          </sc.PiceItemContainer>
-          <sc.PriceItemOne>
-            <button>
-              <FaTrashAlt />
-            </button>
-          </sc.PriceItemOne>
-        </sc.ComprasListItems>
-        <sc.ComprasListItems>
-          <sc.DescsItem>
-            <sc.DescContainer>
-              <h6>Medicamento:</h6>
-              <p>Lorem ipsum dolor sit.</p>
-            </sc.DescContainer>
-            <sc.DescContainer>
-              <h6>Categoría:</h6>
-              <p>Lorem ipsum dolor sit.</p>
-            </sc.DescContainer>
-            <sc.DescContainer>
-              <h6>Existencias:</h6>
-              <p>100</p>
-            </sc.DescContainer>
-            <sc.DescContainer>
-              <h6>Consumo Estimado:</h6>
-              <p>234</p>
-            </sc.DescContainer>
-          </sc.DescsItem>
-          <sc.ProveedorItem>
-            <sc.ProveedorDescItem>
-              <h6>Proveedor:</h6>
-              <p>Lorem, ipsum.</p>
-            </sc.ProveedorDescItem>
-          </sc.ProveedorItem>
-          <sc.PiceItemContainer>
-            <sc.PriceItemOne>
-              <h6>Precio:</h6>
-              <p>$1.500</p>
-            </sc.PriceItemOne>
-            <sc.PriceItemOne>
-              <h6>Total:</h6>
-              <p>$15.000.000</p>
-            </sc.PriceItemOne>
-            <sc.CantidadItem>
-              <h6>Cantidad:</h6>
-              <p>432</p>
-            </sc.CantidadItem>
-          </sc.PiceItemContainer>
-          <sc.PriceItemOne>
-            <button>
-              <FaTrashAlt />
-            </button>
-          </sc.PriceItemOne>
-        </sc.ComprasListItems> */}
       </sc.ComprasContainer>
       <sc.GenerateOrderContainer>
         <h4>Generar Orden</h4>

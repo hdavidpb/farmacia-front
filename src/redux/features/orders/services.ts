@@ -9,6 +9,7 @@ import {
   IOrderDetail,
   IOrders,
   ISuggestions,
+  IUpdateIgnoreSuggestion,
   IUpdateStatusOrderResponse,
   UpdateOrderData,
 } from "./interfaces";
@@ -126,6 +127,21 @@ export const getAllSuggestions = createAsyncThunk(
     try {
       const res = await rest.get<ISuggestions>(
         `${process.env.REACT_APP_API_LOCAL_HOST}/orders/suggestions?page=${page}&quantity=${quantity}`
+      );
+      console.log(res.data);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const putIgnoreSuggestions = createAsyncThunk(
+  "order/ignoreSuggestions",
+  async (id: string) => {
+    try {
+      const res = await rest.put<IUpdateIgnoreSuggestion>(
+        `${process.env.REACT_APP_API_LOCAL_HOST}/orders/suggestions/${id}/ignore`
       );
       console.log(res.data);
       return res.data;

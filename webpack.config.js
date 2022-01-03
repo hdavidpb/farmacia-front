@@ -127,7 +127,7 @@ module.exports = {
     inline: true,
     hot: false,
     open: true,
-    host: "100.0.0.197",
+    host: "100.0.0.142",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js"],

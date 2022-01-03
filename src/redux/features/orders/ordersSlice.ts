@@ -1,11 +1,13 @@
 import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import { IOrdersState } from "./interfaces";
+import { toast } from "react-toastify";
+import { IOrdersState, ISuggestionsResult } from "./interfaces";
 import {
   deletePurchaseOrderProduct,
   getAllOrdersData,
   getAllOrdersDataByDates,
   getAllSuggestions,
   getOrderDetail,
+  putIgnoreSuggestions,
   updateOrderStatus,
 } from "./services";
 
@@ -36,36 +38,34 @@ export const ordersSlice = createSlice({
   name: "orders",
   initialState,
   reducers: {
-    addToShoppingList: (state, action: PayloadAction<string>) => {
-      const newShoppingList = current(
-        state.suggestionsData.suggestions!.results
-      ).filter((el) => el.id === action.payload);
-      console.log(newShoppingList);
-
-      if (state.shoppingData.shoppingList.length !== 0) {
-        state.shoppingData.shoppingList.forEach((el) => {
-          if (el.id === newShoppingList[0].id) {
-            console.log("El elemento ya existe en el array");
-          } else {
-            state.shoppingData.shoppingList = [
-              ...state.shoppingData.shoppingList,
-              ...newShoppingList!,
-            ];
-          }
+    addToShoppingList: (state, action: PayloadAction<ISuggestionsResult>) => {
+      const includes = state.shoppingData.shoppingList.some(
+        (prod) => prod.id === action.payload.id
+      );
+      if (includes) {
+        toast.error("Ya agrego este producto a la lista", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          draggable: true,
+          // progress: undefined,
         });
-      } else {
-        state.shoppingData.shoppingList = [
-          ...state.shoppingData.shoppingList,
-          ...newShoppingList!,
-        ];
+
+        return;
       }
 
-      // state.shoppingData.totalShopping = state.shoppingData.shoppingList.length;
-
-      // const newSuggestions = state.suggestionsData.suggestions?.results.filter(
-      //   (el) => el.id !== action.payload
-      // );
-      // state.suggestionsData.suggestions!.results = newSuggestions!;
+      state.shoppingData.shoppingList = [
+        ...state.shoppingData.shoppingList,
+        action.payload,
+      ];
+      console.log(action.payload);
+    },
+    deleteProductFromList: (state, action: PayloadAction<string>) => {
+      const newShoppingList = state.shoppingData.shoppingList.filter(
+        (prod) => prod.id !== action.payload
+      );
+      state.shoppingData.shoppingList = newShoppingList;
     },
   },
   extraReducers: (builder) => {
@@ -125,9 +125,20 @@ export const ordersSlice = createSlice({
       (state.suggestionsData.loading = false),
         (state.suggestionsData.suggestions = payload!);
     });
+    builder.addCase(putIgnoreSuggestions.pending, (state) => {
+      state.suggestionsData.loading = true;
+    });
+    builder.addCase(putIgnoreSuggestions.fulfilled, (state, { payload }) => {
+      state.suggestionsData.loading = false;
+      const newSuggestionsList =
+        state.suggestionsData.suggestions!.results.filter(
+          (sugg) => sugg.id !== payload?.id
+        );
+      state.suggestionsData.suggestions!.results = newSuggestionsList;
+    });
   },
 });
 
-export const { addToShoppingList } = ordersSlice.actions;
+export const { addToShoppingList, deleteProductFromList } = ordersSlice.actions;
 
 export default ordersSlice.reducer;

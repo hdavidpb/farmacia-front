@@ -144,3 +144,15 @@ export interface ISuggestions {
   totalResults: number;
   totalPages: number;
 }
+
+export interface IUpdateIgnoreSuggestion {
+  id: string;
+  productStock: number;
+  suggestion: number;
+  totalPrice: null;
+  ignored: true;
+  date: string;
+  objective: number;
+  deletedAt: null | string;
+  updatedAt: string;
+}

@@ -1,5 +1,7 @@
 import { LoaderContainer } from "@components/Inventario/styles";
+import { ISuggestionsResult } from "@redux/features/orders/interfaces";
 import { addToShoppingList } from "@redux/features/orders/ordersSlice";
+import { putIgnoreSuggestions } from "@redux/features/orders/services";
 import { RootState } from "@redux/store";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,9 +13,9 @@ const SugeridosTable = () => {
     (store: RootState) => store.orders.suggestionsData
   );
 
-  //   const handleAddToShoopingList = (id: string) => {
-  //     dispatch(addToShoppingList(id));
-  //   };
+  const handleAddToShoopingList = (sugg: ISuggestionsResult) => {
+    dispatch(addToShoppingList(sugg));
+  };
   return (
     <sc.SugeridosTableContainer>
       {!loading ? (
@@ -67,11 +69,16 @@ const SugeridosTable = () => {
               <sc.DescontainerTwo>
                 <sc.Button
                   add={true}
-                  // onClick={() => handleAddToShoopingList(suggestion.id)}
+                  onClick={() => handleAddToShoopingList(suggestion)}
                 >
                   Agregar
                 </sc.Button>
-                <sc.Button add={false}>Ignorar</sc.Button>
+                <sc.Button
+                  add={false}
+                  onClick={() => dispatch(putIgnoreSuggestions(suggestion.id))}
+                >
+                  Ignorar
+                </sc.Button>
               </sc.DescontainerTwo>
             </sc.ItemsTwo>
           </sc.SegeridosListItem>

@@ -235,6 +235,28 @@ export const ProviderDescContainer = styled.div`
   padding: 10px;
 `;
 
+export const FilterContratContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  & input {
+    width: 70%;
+    border: 1px solid #bebebe;
+    border-radius: 4px;
+    padding: 6px;
+    text-align: center;
+    outline: none;
+    transition: all 0.1s;
+
+    &:focus {
+      box-shadow: 0 0 2px 2px #cdcffe;
+      border: 1px solid #cdcffe;
+    }
+  }
+`;
+
 export const DescDetailContainer = styled.div`
   width: auto;
   display: flex;

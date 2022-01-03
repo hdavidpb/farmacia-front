@@ -482,7 +482,7 @@ export const ComprasContainer = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding: 5px;
-  box-shadow: ${themes.shadowBorder};
+  /* box-shadow: ${themes.shadowBorder}; */
   border-radius: ${themes.radius};
   gap: 8px;
   &::-webkit-scrollbar {
@@ -500,9 +500,9 @@ export const ComprasListItems = styled.div`
   grid-template-columns: 1fr 1fr 1fr 90px;
   justify-content: center;
   align-items: center;
-  box-shadow: ${themes.shadowBorder};
+  box-shadow: 0px 3px 6px #00000029;
   padding: 12px;
-  border-radius: ${themes.radius};
+  border-radius: 9px;
 `;
 
 export const ProveedorItem = styled.div`

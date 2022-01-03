@@ -97,6 +97,10 @@ const ProviderDetails = () => {
           </p>
         </sc.DescDetailContainer>
       </sc.ProviderDescContainer>
+      <sc.FilterContratContainer>
+        <input type="text" placeholder="Buscar código o nombre" />
+      </sc.FilterContratContainer>
+
       <sc.TableDescContainer>
         <sc.HeaderDetails>
           <sc.GobackContainer
