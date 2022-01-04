@@ -5,6 +5,7 @@ interface IProps {
   background?: string;
   grid?: string;
   border?: boolean;
+  gridColumn?: string;
 }
 
 export const DetailsContainer = styled.div`
@@ -308,6 +309,7 @@ export const TitleLayoutDesc = styled.p`
   margin-bottom: 0;
   border-right: ${({ border }: IProps) => (border ? "solid 1px gray " : "")};
   padding: 3px;
+  grid-column: ${({ gridColumn }: IProps) => (gridColumn ? gridColumn : null)};
   &:last-child {
     border: none;
   }

@@ -1,8 +1,12 @@
+import GoBackBtn from "@components/GoBackBtn";
 import React from "react";
+import { useParams } from "react-router-dom";
 import * as sc from "./styles";
 const Signing = () => {
+  const { id } = useParams<{ id: string }>();
   return (
     <sc.SigningContainer>
+      <GoBackBtn to={`/farmacia/ordenes-compra/ordenes-table/detalles/${id}`} />
       <sc.BonnasonaTemplateContinaer>
         <sc.HeaderContainer>
           <sc.ImgHeader>
@@ -130,6 +134,30 @@ const Signing = () => {
             <sc.TitleLayoutDesc border={true}>0,00</sc.TitleLayoutDesc>
             <sc.TitleLayoutDesc border={true}>1.377.600,00</sc.TitleLayoutDesc>
           </sc.TitleSeconContainer>
+        </sc.FooterGridConteiner>
+        <sc.FooterGridConteiner>
+          <sc.TilteFirstContainer grid="2">
+            <sc.TitleLayoutDesc gridColumn={"1/3"}>
+              Descuentos Financieros
+            </sc.TitleLayoutDesc>
+          </sc.TilteFirstContainer>
+          <sc.TitleSeconContainer grid="7">
+            <sc.TitleLayoutDesc gridColumn={"1/5"} border={true}>
+              Totales 1.377.600.00
+            </sc.TitleLayoutDesc>
+
+            <sc.TitleLayoutDesc border={true}>0,00</sc.TitleLayoutDesc>
+            <sc.TitleLayoutDesc border={true}>19,00</sc.TitleLayoutDesc>
+            <sc.TitleLayoutDesc border={true}>1.377.600,00</sc.TitleLayoutDesc>
+          </sc.TitleSeconContainer>
+        </sc.FooterGridConteiner>
+        <sc.FooterGridConteiner>
+          <sc.TilteFirstContainer grid="4">
+            <sc.TitleLayoutDesc border={true}>Día Inicial</sc.TitleLayoutDesc>
+            <sc.TitleLayoutDesc border={true}>Día Final</sc.TitleLayoutDesc>
+            <sc.TitleLayoutDesc border={true}>%</sc.TitleLayoutDesc>
+            <sc.TitleLayoutDesc border={true}>Total</sc.TitleLayoutDesc>
+          </sc.TilteFirstContainer>
         </sc.FooterGridConteiner>
       </sc.BonnasonaTemplateContinaer>
     </sc.SigningContainer>

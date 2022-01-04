@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import ButtonsLinks from "../ButtonsLinks";
 import { OrdenesContainer } from "../styles";
 import { titles } from "./const";
@@ -19,11 +19,13 @@ import GridLoader from "react-spinners/GridLoader";
 import { FaTrashAlt } from "react-icons/fa";
 import { UpdateOrderData } from "../../../redux/features/orders/interfaces";
 import Swal from "sweetalert2";
+import { ApproveOrderSignPath } from "@routes/routes";
 dayjs.extend(customParseFormat);
 
 const DetailsOrders = () => {
-  const [colorStatus, setColorStatus] = useState<string>("");
   const dispatch = useDispatch();
+  const history = useHistory();
+  const [colorStatus, setColorStatus] = useState<string>("");
   const { id } = useParams<{ id: string }>();
   const { orderDetail, loading } = useSelector(
     (store: RootState) => store.orders.orderDetailData
@@ -52,6 +54,7 @@ const DetailsOrders = () => {
   }, [orderDetail]);
 
   const handleChangeStatusOrder = (id: number, status: string) => {
+    console.log(status);
     let title = "";
     if (status === "PENDIENTE") {
       title = "APROBADA";
@@ -74,6 +77,11 @@ const DetailsOrders = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: `Si, dar como ${title}`,
     }).then((result) => {
+      if (result.isConfirmed && status === "PENDIENTE") {
+        history.push(`/farmacia/orders/sign/${id}`);
+        console.log("GO TO SIGN");
+        return;
+      }
       if (result.isConfirmed) {
         dispatch(updateOrderStatus(dataOrder));
         Swal.fire(

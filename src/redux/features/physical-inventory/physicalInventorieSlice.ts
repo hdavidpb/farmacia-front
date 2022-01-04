@@ -47,7 +47,7 @@ export const physicalInventorieSlice = createSlice({
     },
     setShelfFilter: (state, action: PayloadAction<string>) => {
       const newShelfs = state.shelf.filter((value) =>
-        value.shelfName.includes(action.payload)
+        value.shelfName.toLowerCase().includes(action.payload.toLowerCase())
       );
 
       state.filterShelf = newShelfs;
